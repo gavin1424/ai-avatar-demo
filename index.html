@@ -127,24 +127,47 @@ footer ol{margin:0;padding-left:1.2em;font-size:.8rem;word-break:break-all}
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:6px 18px 6px 6px;box-shadow:0 14px 34px -14px rgba(60,40,20,.5);font-weight:700}
 .fab img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center 15%}
 .fab span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#33c26b;margin-right:6px;vertical-align:1px}
+/* 政見卡片照片 */
+.acard.has-pic{padding-top:0;overflow:hidden}
+.acard .pic{position:relative;margin:0 -24px 16px;aspect-ratio:3/2;overflow:hidden;background:#fff3ea}
+.acard .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.acard:hover .pic img{transform:scale(1.05)}
+.acard .pic figcaption{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.88);border-radius:999px;padding:1px 9px;font-size:.7rem;color:#857d96}
+/* 右下角數字人小窗 */
+.buddy{position:fixed;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:flex-end;gap:10px}
+.bwin{position:relative;width:118px;height:150px;border:4px solid #fff;border-radius:26px;overflow:hidden;padding:0;background:#fff3ea;box-shadow:0 18px 40px -16px rgba(150,90,50,.55);cursor:pointer;flex:none}
+.bwin img,.bwin video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 16%;transform:scale(2.5);transform-origin:50% 16%}
+.bwin #bTalk{opacity:0;transition:opacity .3s}.buddy.talking #bTalk{opacity:1}
+.bwin .live{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.92);border-radius:999px;padding:1px 9px 1px 7px;font-size:.72rem;font-weight:700;color:#3d3652}
+.bwin .live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#33c26b;margin-right:5px;vertical-align:1px;animation:pulse 1.6s infinite}
+.bubble{position:relative;max-width:min(300px,calc(100vw - 160px));background:#fff;border-radius:22px 22px 6px 22px;padding:14px 16px 12px;box-shadow:0 16px 36px -16px rgba(150,90,50,.5);font-size:.93rem;line-height:1.6;transform-origin:100% 100%;transition:opacity .3s,transform .3s}
+.bubble.hide{opacity:0;transform:scale(.85);pointer-events:none}
+.bubble b{display:block;color:#e98d63;font-size:.8rem;margin-bottom:2px}
+.bubble p{margin:0;min-height:1.6em}
+.bubble .dim{color:#c8bfb6}
+.bact{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.bact button,.bact a{border:0;border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:700;background:#fff1e7;color:#3d3652}
+.bact a{background:var(--grad);color:#fff}
+.bx{position:absolute;right:8px;top:4px;border:0;background:none;color:#b3a9a0;font-size:1.1rem;padding:2px 6px}
+@media(max-width:620px){.bwin{width:88px;height:112px;border-radius:20px}.bubble{font-size:.85rem;padding:10px 12px 9px;max-width:calc(100vw - 130px)}.bact{margin-top:6px;gap:6px}.bact button,.bact a{padding:5px 10px;font-size:.78rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hname svg path{stroke-dashoffset:0}}
-:root{--ink:#3d3652;--mute:#857d96;--grad:linear-gradient(120deg,#8b7cf6,#f19bc0);--cream:#fffaf4;--line:#efe7de;--warm:#e98d63}
+:root{--ink:#3d3652;--mute:#857d96;--grad:linear-gradient(120deg,#ff8a65,#ffb35c);--cream:#fffaf4;--line:#efe7de;--warm:#e98d63}
 /* ===== 親切柔和介面 ===== */
 :root{--paper:#fffaf4;--paper2:#fff3ea;--card:#fff;--line:#efe7de}
 body{background:var(--paper);color:var(--ink)}
 .nav{background:rgba(255,250,244,.9);color:var(--ink)}
 .nav.solid{border-color:var(--line);box-shadow:none}
-.nav ul{color:var(--mute)}.nav ul a:hover{color:#b9578a}
+.nav ul{color:var(--mute)}.nav ul a:hover{color:#d9643a}
 .brand .no{background:var(--grad)}
-.btn-main{background:var(--grad);color:#fff;box-shadow:0 10px 24px -10px rgba(241,155,192,.8)}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 10px 24px -10px rgba(255,138,101,.7)}
 .btn-line{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
-.hero{background:radial-gradient(700px 500px at 0 0,#ffe3d1,transparent 60%),radial-gradient(800px 600px at 100% 10%,#e9e3ff,transparent 60%),var(--paper);color:var(--ink)}
+.hero{background:radial-gradient(700px 500px at 0 0,#ffe3d1,transparent 60%),radial-gradient(800px 600px at 100% 10%,#fff0d6,transparent 60%),var(--paper);color:var(--ink)}
 .hero::before{background:radial-gradient(circle,#fff 0,rgba(255,255,255,0) 70%)}
 .hero .kick{font-family:"Noto Sans TC",sans-serif;font-weight:700;letter-spacing:.14em;font-size:.9rem;color:var(--warm);margin:0 0 14px}
 .badge{background:#fff;border:1.5px solid var(--line);color:var(--mute)}
 .badge b{background:var(--grad)}
 .hello{color:var(--mute)}
-.hname span{background:linear-gradient(100deg,#7c6cf2,#ef8fb6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hname span{background:linear-gradient(100deg,#ff7043,#ffa63d);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hname svg path{stroke:#ffc7a3}
 .slogan{color:var(--ink);font-family:"LXGW WenKai TC","Noto Sans TC",serif;font-weight:700}
 .hsub,.count{color:var(--mute)}.count b{color:var(--ink)}
@@ -153,7 +176,7 @@ body{background:var(--paper);color:var(--ink)}
 .sticker{border-radius:20px 20px 20px 6px;color:var(--ink);box-shadow:0 12px 26px -12px rgba(150,100,70,.4)}
 .sticker b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .cap{color:var(--mute)}
-.talkband{background:linear-gradient(120deg,#fff0e6,#f1ecff);color:var(--ink);box-shadow:0 24px 50px -30px rgba(150,100,70,.45)}
+.talkband{background:linear-gradient(120deg,#fff0e6,#fff4e0);color:var(--ink);box-shadow:0 24px 50px -30px rgba(150,100,70,.45)}
 .talkband::after{background:rgba(255,255,255,.5)}
 .talkband .av{border-color:#fff}
 .talkband .btn{background:var(--grad);color:#fff}
@@ -161,11 +184,11 @@ body{background:var(--paper);color:var(--ink)}
 .kicker{font-family:"Noto Sans TC",sans-serif;font-weight:700;letter-spacing:.1em;color:var(--warm);font-size:.95rem}
 .mark{background:linear-gradient(transparent 62%,#ffd9c4 62%);color:inherit;-webkit-background-clip:border-box;background-clip:border-box}
 .acard{border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 30px -20px rgba(150,100,70,.4);rotate:0deg!important}
-.acard .tag{color:#9a6bd8;background:#f3eeff}
+.acard .tag{color:#e0703f;background:#fff1e6}
 .acard .kind{color:var(--warm);font-family:"Noto Sans TC",sans-serif}
-.acard .foot button{color:#b9578a}
+.acard .foot button{color:#d9643a}
 .story{background:#fff3ea}
-.tli .y{color:#9a6bd8}.tli::after{border-color:#c9b9ff;background:#fff3ea}
+.tli .y{color:#e0703f}.tli::after{border-color:#ffc49e;background:#fff3ea}
 .fab{background:#fff;border:1.5px solid var(--line);color:var(--ink);box-shadow:0 14px 30px -14px rgba(150,100,70,.45)}
 </style>
 </head>
@@ -221,7 +244,14 @@ body{background:var(--paper);color:var(--ink)}
   <div class="legal"><span id="copy"></span><span>網站與 AI 分身製作：<span data-f="company"></span></span></div>
 </div></footer>
 
-<a class="fab" href="talk.html"><img id="fabImg" alt=""><span>跟我聊聊</span></a>
+<aside class="buddy" id="buddy" aria-label="AI 數字分身">
+  <div class="bubble" id="bubble"><button class="bx" id="bx" aria-label="收起">×</button><b id="bName"></b><p id="bText"></p>
+    <div class="bact"><button type="button" id="bPlay">▶ 聽我自我介紹</button><a href="talk.html">跟我聊聊 →</a></div></div>
+  <button type="button" class="bwin" id="bWin" aria-label="跟 AI 分身打招呼">
+    <img id="fabImg" alt=""><video id="bIdle" muted loop playsinline preload="metadata"></video><video id="bTalk" muted loop playsinline preload="none"></video>
+    <span class="live">在線</span></button>
+</aside>
+<audio id="bAu" preload="none"></audio>
 
 <script>
 (() => {
@@ -255,13 +285,42 @@ const tick = () => { const d = Math.max(0, tgt - Date.now()) / 1000;
   $("#count").innerHTML = `<span>距離投票日還有</span><span><b>${Math.floor(d / 86400)}</b> 天 <b>${Math.floor(d % 86400 / 3600)}</b> 小時</span><span>記得回家投票 🗳️</span>`; };
 if (S.demo) $("#count").remove(); else { tick(); setInterval(tick, 30000); }
 
+/* 右下角數字人：待機影片＋介紹氣泡；點一下播自我介紹（開場白語音＋說話影片＋逐字字幕） */
+(() => {
+  const A = S.avatar || {}, one = v => Array.isArray(v) ? v[0] : v;
+  const bud = $("#buddy"), bub = $("#bubble"), bt = $("#bText"), au = $("#bAu"), vI = $("#bIdle"), vT = $("#bTalk");
+  $("#bName").textContent = `${C.name}｜AI 數字分身`;
+  if (one(A.idle)) { vI.src = one(A.idle); vI.play().catch(() => {}); } else vI.remove();
+  if (one(A.talk)) vT.src = one(A.talk); else vT.remove();
+  const intro = [`嗨！我是${C.name}的 AI 分身 👋`, "想知道我做了哪些事？往下滑就看得到。", "有問題直接問我，用說的也可以喔！"];
+  let k = 0, busy = false;
+  bt.textContent = intro[0];
+  setInterval(() => { if (!busy && !bub.classList.contains("hide")) bt.textContent = intro[++k % intro.length]; }, 5000);
+  const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  function speak() {
+    bub.classList.remove("hide"); busy = true; au.src = "audio/opening.mp3";
+    bud.classList.add("talking"); vT.currentTime = 0; vT.play?.().catch(() => {});
+    const t = [...S.opening];
+    const tick = () => { const p = au.duration ? au.currentTime / au.duration : 0, n = Math.round(t.length * p);
+      bt.innerHTML = esc(t.slice(0, n).join("")) + `<span class="dim">${esc(t.slice(n).join(""))}</span>`;
+      if (!au.paused && !au.ended) requestAnimationFrame(tick); };
+    au.play().then(tick).catch(() => { bt.textContent = S.opening; });
+    au.onended = () => { bud.classList.remove("talking"); vT.pause?.(); bt.textContent = S.opening; busy = false; };
+  }
+  if (innerWidth < 620) setTimeout(() => { if (!busy) bub.classList.add("hide"); }, 7000);   // 手機上幾秒後自動收起，點小窗再打開
+  $("#bPlay").onclick = speak;
+  $("#bWin").onclick = () => bub.classList.contains("hide") ? bub.classList.remove("hide") : speak();
+  $("#bx").onclick = () => { bub.classList.add("hide"); au.pause(); bud.classList.remove("talking"); busy = false; };
+})();
+
 /* chips */
 $("#bandChips").innerHTML = S.qa.filter(q => q.chip).slice(0, 4).map(q => `<a href="talk.html?q=${encodeURIComponent(q.id)}">${q.q}</a>`).join("");
 
 /* achievements + sources */
 const src = [];
 const cite = u => { if (!u) return ""; let i = src.indexOf(u); if (i < 0) { src.push(u); i = src.length - 1; } return `<a href="${u}" target="_blank" rel="noopener">資料來源 ${i + 1}</a>`; };
-$("#agrid").innerHTML = S.achievements.map(a => `<article class="acard rv">
+$("#agrid").innerHTML = S.achievements.map(a => `<article class="acard rv${a.img ? " has-pic" : ""}">
+  ${a.img ? `<figure class="pic"><img src="${a.img}" alt="${a.title}" loading="lazy"><figcaption>AI 示意圖</figcaption></figure>` : ""}
   <span class="tag">${a.tag}</span>${a.kind ? `<span class="kind">${a.kind}</span>` : ""}
   <h3>${a.title}</h3><p>${a.text}</p>
   <div class="foot">${cite(a.source_url)}<button data-ask="${a.title}">問問我 →</button></div></article>`).join("");
