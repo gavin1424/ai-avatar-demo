@@ -26,56 +26,64 @@ window.SITE = {
    "title": "公車到站預報",
    "text": "創辦公司推動公車即時到站資訊，讓通勤族不再空等。（虛構）",
    "kind": "經歷",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a01.jpg?v=1794581843"
   },
   {
    "tag": "社區",
    "title": "空地變公園",
    "text": "帶領社區把閒置空地改造成菜園、遊戲場與小公園。（虛構）",
    "kind": "經歷",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a02.jpg?v=1794581843"
   },
   {
    "tag": "長照",
    "title": "長照據點規劃",
    "text": "協助規劃社區長照據點，讓長輩在家附近就能得到照顧。（虛構）",
    "kind": "經歷",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a03.jpg?v=1794581843"
   },
   {
    "tag": "育兒",
    "title": "托育中心設置",
    "text": "參與托育中心選址規劃，讓家長接送更順路。（虛構）",
    "kind": "經歷",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a04.jpg?v=1794581843"
   },
   {
    "tag": "政見",
    "title": "15 分鐘生活圈",
    "text": "出門 15 分鐘內就有公園、托育、診所和市場。（示範政見）",
    "kind": "政見",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a05.jpg?v=1794581843"
   },
   {
    "tag": "政見",
    "title": "青年安居",
    "text": "增加平價租屋，媒合空屋出租，讓青年住得起。（示範政見）",
    "kind": "政見",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a06.jpg?v=1794581843"
   },
   {
    "tag": "政見",
    "title": "銀髮友善",
    "text": "每個里都有共餐與健康促進據點，長輩不孤單。（示範政見）",
    "kind": "政見",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a07.jpg?v=1794581843"
   },
   {
    "tag": "政見",
    "title": "智慧通勤",
    "text": "公車、捷運、單車一張卡整合轉乘，減少等車時間。（示範政見）",
    "kind": "政見",
-   "source_url": ""
+   "source_url": "",
+   "img": "img/ach/a08.jpg?v=1794581843"
   }
  ],
  "timeline": [
@@ -442,6 +450,6 @@ window.SITE = {
    "avatar/think.mp4?v=1794579945"
   ],
   "bg": "avatar/bg.png?v=1794579938",
-  "poster": "avatar/poster.jpg?v=1794580934"
+  "poster": "avatar/poster.jpg?v=1794581843"
  }
 };
