@@ -450,14 +450,47 @@ window.SITE = {
    "avatar/think.mp4?v=1794579945"
   ],
   "bg": "avatar/bg.png?v=1794579938",
-  "poster": "avatar/poster.jpg?v=1794584557"
+  "poster": "avatar/poster.jpg?v=1794587798"
  },
  "cutout": {
   "idle": "avatar/cut_idle.webm?v=1794584482",
   "talk": "avatar/cut_talk.webm?v=1794584486",
   "greet": "avatar/cut_greet.webm?v=1794584490",
-  "poster": "avatar/cut_poster.png?v=1794584557"
+  "poster": "avatar/cut_poster.png?v=1794587798"
  },
- "heroImg": "",
- "gallery": []
+ "heroImg": "img/hero.jpg?v=1794587676",
+ "gallery": [
+  {
+   "img": "img/gallery/g01.jpg?v=1794587676",
+   "cap": "早上的社區公園，長輩一起做運動"
+  },
+  {
+   "img": "img/gallery/g02.jpg?v=1794587676",
+   "cap": "放學後，親子在河濱步道散步"
+  },
+  {
+   "img": "img/gallery/g03.jpg?v=1794587676",
+   "cap": "新落成的社區托育中心"
+  },
+  {
+   "img": "img/gallery/g04.jpg?v=1794587676",
+   "cap": "傳統市場裡的年輕攤商"
+  },
+  {
+   "img": "img/gallery/g05.jpg?v=1794587676",
+   "cap": "公車、單車、捷運一站轉乘"
+  },
+  {
+   "img": "img/gallery/g06.jpg?v=1794587676",
+   "cap": "社區共餐，志工陪長輩吃飯"
+  },
+  {
+   "img": "img/gallery/g07.jpg?v=1794587676",
+   "cap": "傍晚亮起燈的溫暖街角"
+  },
+  {
+   "img": "img/gallery/g08.jpg?v=1794587676",
+   "cap": "青年共享工作空間"
+  }
+ ]
 };
