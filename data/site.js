@@ -430,18 +430,18 @@ window.SITE = {
  "demoBanner": "產品示範｜本頁人物為 AI 生成的虛擬人物，並非真實候選人，內容皆為虛構",
  "company": "陳靈有限公司",
  "avatar": {
-  "greet": "avatar/greet.mp4?v=1794551895",
+  "greet": "avatar/greet.mp4?v=1794564157",
   "idle": [
-   "avatar/idle.mp4?v=1794551897"
+   "avatar/idle.mp4?v=1794564158"
   ],
   "talk": [
-   "avatar/talk.mp4?v=1794551899",
-   "avatar/talk2.mp4?v=1794551901"
+   "avatar/talk.mp4?v=1794564160",
+   "avatar/talk2.mp4?v=1794564162"
   ],
   "think": [
-   "avatar/think.mp4?v=1794551902"
+   "avatar/think.mp4?v=1794564163"
   ],
-  "bg": "avatar/bg.png?v=1794551885",
-  "poster": "avatar/poster.jpg?v=1794562028"
+  "bg": "avatar/bg.png?v=1794564155",
+  "poster": "avatar/poster.jpg?v=1794564163"
  }
 };

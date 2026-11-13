@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>競選網站</title>
-<meta name="theme-color" content="#fbf7f0">
+<meta name="theme-color" content="#06247f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=LXGW+WenKai+TC:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Montserrat:wght@700;800&family=LXGW+WenKai+TC:wght@400;700&display=swap">
 <script src="data/site.js"></script>
 <style>
 :root{
@@ -128,6 +128,43 @@ footer ol{margin:0;padding-left:1.2em;font-size:.8rem;word-break:break-all}
 .fab img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center 15%}
 .fab span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#33c26b;margin-right:6px;vertical-align:1px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hname svg path{stroke-dashoffset:0}}
+/* ===== 陳靈品牌介面（參考 lumiava-ai.com） ===== */
+:root{--navy:#06247f;--blue:#0d4bea;--sky:#3d8bff;--grad:linear-gradient(120deg,#6d3cf5,#b146e8 55%,#ec4899);
+  --gold:linear-gradient(100deg,#ffd93b,#fff3a8 60%,#fff);--ink:#0f1d4a;--mute:#5b6b95;--line:#dbe6ff;--card:#fff;--paper:#f4f8ff;--paper2:#eaf2ff}
+body{background:var(--paper);color:var(--ink)}
+.nav{background:rgba(8,44,170,.88);color:#fff}
+.nav.solid{border-color:transparent;box-shadow:0 8px 30px rgba(0,20,90,.25)}
+.nav ul{color:#cfe0ff}.nav ul a:hover{color:#fff}
+.brand .no{background:var(--grad)}
+.btn-main{background:var(--grad);box-shadow:0 10px 26px -8px rgba(236,72,153,.6)}
+.btn-line{background:transparent;border:1px solid rgba(255,255,255,.7);color:#fff}
+.hero{background:radial-gradient(900px 500px at 85% 80px,rgba(120,200,255,.55),transparent 60%),radial-gradient(700px 500px at 5% 420px,rgba(139,92,246,.35),transparent 60%),linear-gradient(180deg,#06247f,#0d4bea 60%,#3d8bff);color:#fff}
+.hero::before{background:radial-gradient(circle,rgba(140,220,255,.28),rgba(139,92,246,.12) 40%,transparent 70%)}
+.hero .kick{font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:.26em;font-size:.8rem;color:#ffd93b;margin:0 0 14px}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);color:#e3ecff}
+.badge b{background:var(--grad)}
+.hello{color:#cfe0ff}
+.hname span{background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hname svg path{stroke:#ffd93b}
+.htitle{color:#ffd93b}
+.slogan{color:#fff;font-family:"Noto Sans TC",sans-serif;font-weight:900}
+.hsub,.count{color:#cfe0ff}.count b{color:#fff}
+.photo .frame{border-radius:50%;aspect-ratio:1;border:2px solid rgba(190,230,255,.7);background:rgba(255,255,255,.08);box-shadow:0 0 0 10px rgba(255,255,255,.05),0 0 60px rgba(140,220,255,.45)}
+.photo .frame img{object-position:center 12%}
+.sticker{border-radius:18px 18px 18px 4px;color:var(--ink);box-shadow:0 10px 30px rgba(0,30,120,.3)}
+.sticker b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cap{color:#b9cdf7}
+.talkband{background:linear-gradient(120deg,#0a2a9a,#0d4bea);box-shadow:0 30px 60px -30px rgba(0,30,120,.6)}
+.talkband .btn{background:var(--grad);color:#fff}
+.talkband .chips a{background:#fff;color:var(--ink);font-weight:700}
+.kicker{font-family:Montserrat,"Noto Sans TC",sans-serif;font-weight:800;letter-spacing:.12em;color:#6d3cf5;font-size:.95rem}
+.mark{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.acard{border:0;border-radius:22px;box-shadow:0 14px 40px -18px rgba(0,30,120,.35);rotate:0deg!important}
+.acard .tag{color:#3d5bd9;background:#eaf0ff}
+.acard .kind{color:#b146e8;font-family:"Noto Sans TC",sans-serif}
+.acard .foot button{color:#6d3cf5}
+.tli .y{color:var(--blue)}.tli::after{border-color:var(--blue)}
+.fab{background:rgba(8,20,70,.92);border:1px solid rgba(160,200,255,.3);color:#fff;box-shadow:0 14px 30px rgba(0,20,90,.35)}
 </style>
 </head>
 <body>
@@ -140,6 +177,7 @@ footer ol{margin:0;padding-left:1.2em;font-size:.8rem;word-break:break-all}
 <main id="top">
 <section class="hero"><div class="wrap">
   <div>
+    <p class="kick">AI DIGITAL HUMAN</p>
     <span class="badge"><b id="partyB"></b><span data-f="title"></span></span>
     <p class="hello">大家好，我是</p>
     <h1 class="hname"><span data-f="name"></span><svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 80 4, 180 4, 296 12"/></svg></h1>
@@ -201,8 +239,10 @@ $("#disclose").textContent = S.disclose;
 $("#contact").textContent = S.contact || "";
 $("#copy").textContent = `© ${new Date().getFullYear()} ${C.name}`;
 
-/* 示範模式：頂端常駐說明「虛擬人物」，不做投票倒數 */
+/* 示範模式：頂端常駐說明「虛擬人物」，不做投票倒數，文案改成虛構示範 */
 if (S.demo) {
+  const tp = document.querySelector(".talkband p"); if (tp) tp.textContent = "用說的或用打的都可以。這是 AI 數字分身的產品示範，人物與內容皆為虛構。";
+  const ld = document.querySelector("#done .lead"); if (ld) ld.textContent = "以下經歷與政見都是示範用的虛構內容，用來展示 AI 數字分身的效果。";
   const b = document.createElement("div");
   b.textContent = S.demoBanner; b.style.cssText = "position:sticky;top:0;z-index:99;background:#2b2622;color:#fff;text-align:center;font-size:.85rem;padding:7px 12px;line-height:1.5";
   document.body.prepend(b);
