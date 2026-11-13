@@ -438,25 +438,27 @@ window.SITE = {
  "demoBanner": "產品示範｜本頁人物為 AI 生成的虛擬人物，並非真實候選人，內容皆為虛構",
  "company": "陳靈有限公司",
  "avatar": {
-  "greet": "avatar/greet.mp4?v=1794579940",
+  "greet": "avatar/greet.mp4?v=1794589009",
   "idle": [
-   "avatar/idle.mp4?v=1794579941"
+   "avatar/idle.mp4?v=1794589011"
   ],
   "talk": [
-   "avatar/talk.mp4?v=1794579943",
-   "avatar/talk2.mp4?v=1794579944"
+   "avatar/talk.mp4?v=1794589013",
+   "avatar/talk2.mp4?v=1794589014"
   ],
   "think": [
-   "avatar/think.mp4?v=1794579945"
+   "avatar/think.mp4?v=1794589016"
   ],
-  "bg": "avatar/bg.png?v=1794579938",
-  "poster": "avatar/poster.jpg?v=1794587798"
+  "bg": "avatar/bg.png?v=1794589007",
+  "poster": "avatar/poster.jpg?v=1794589125"
  },
  "cutout": {
   "idle": "avatar/cut_idle.webm?v=1794584482",
   "talk": "avatar/cut_talk.webm?v=1794584486",
+  "talk2": "avatar/cut_talk2.webm?v=1794589022",
+  "think": "avatar/cut_think.webm?v=1794589027",
   "greet": "avatar/cut_greet.webm?v=1794584490",
-  "poster": "avatar/cut_poster.png?v=1794587798"
+  "poster": "avatar/cut_poster.png?v=1794589126"
  },
  "heroImg": "img/hero.jpg?v=1794587676",
  "gallery": [

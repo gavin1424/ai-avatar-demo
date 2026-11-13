@@ -159,6 +159,18 @@ footer ol{margin:0;padding-left:1.2em;font-size:.8rem;word-break:break-all}
 .bubble b{display:block;color:#e98d63;font-size:.8rem;margin-bottom:2px}
 .bubble p{margin:0;min-height:1.6em}
 .bubble .dim{color:#c8bfb6}
+.blog{max-height:min(34vh,220px);overflow-y:auto}
+.blog .me{margin:6px 0 4px auto;width:fit-content;max-width:90%;background:var(--grad);color:#fff;border-radius:14px 14px 4px 14px;padding:4px 10px;font-size:.85rem}
+.bchips{display:flex;gap:6px;overflow-x:auto;margin:8px -2px 0;padding:2px;scrollbar-width:none}
+.bchips::-webkit-scrollbar{display:none}
+.bchips button{flex:none;border:1px solid #f3e1d3;background:#fff7f0;border-radius:999px;padding:4px 10px;font-size:.78rem;color:#3d3652}
+.bin{display:flex;gap:6px;margin-top:8px}
+.bin input{flex:1;min-width:0;border:1.5px solid #efe7de;border-radius:999px;padding:7px 12px;font:inherit;font-size:.85rem;outline:none;background:#fffaf4}
+.bin input:focus{border-color:#ffc49e}
+.bin button{flex:none;width:34px;height:34px;border-radius:50%;border:0;display:grid;place-items:center;font-size:.9rem}
+.bmic{background:#fff1e7}.bmic.on{background:#e5484d;color:#fff;animation:pulse 1s infinite}
+.bsend{background:var(--grad);color:#fff}
+.bfig #bThink{opacity:0;transition:opacity .3s}.buddy.thinking #bThink{opacity:1}.buddy.thinking #bIdle{opacity:0}
 .bact{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .bact button,.bact a{border:0;border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:700;background:#fff1e7;color:#3d3652}
 .bact a{background:var(--grad);color:#fff}
@@ -264,10 +276,12 @@ body{background:var(--paper);color:var(--ink)}
 </div></footer>
 
 <aside class="buddy" id="buddy" aria-label="AI 數字分身">
-  <div class="bubble" id="bubble"><button class="bx" id="bx" aria-label="收起">×</button><b id="bName"></b><p id="bText"></p>
-    <div class="bact"><button type="button" id="bPlay">▶ 聽我自我介紹</button><a href="talk.html">跟我聊聊 →</a></div></div>
+  <div class="bubble" id="bubble"><button class="bx" id="bx" aria-label="收起">×</button><b id="bName"></b>
+    <div class="blog" id="bLog"><p id="bText"></p></div>
+    <div class="bchips" id="bChips"></div>
+    <form class="bin" id="bForm"><button type="button" class="bmic" id="bMic" aria-label="用說的">🎤</button><input id="bQ" placeholder="想問什麼都可以…" autocomplete="off" enterkeyhint="send"><button class="bsend" aria-label="送出">➤</button></form></div>
   <button type="button" class="bfig" id="bWin" aria-label="跟 AI 分身打招呼">
-    <img id="fabImg" alt=""><video id="bIdle" muted loop playsinline preload="auto"></video><video id="bTalk" muted loop playsinline preload="none"></video>
+    <img id="fabImg" alt=""><video id="bIdle" muted loop playsinline preload="auto"></video><video id="bThink" muted loop playsinline preload="auto"></video><video id="bTalk" muted playsinline preload="auto"></video>
     <span class="live">在線</span></button>
 </aside>
 <audio id="bAu" preload="none"></audio>
@@ -305,35 +319,82 @@ const tick = () => { const d = Math.max(0, tgt - Date.now()) / 1000;
   $("#count").innerHTML = `<span>距離投票日還有</span><span><b>${Math.floor(d / 86400)}</b> 天 <b>${Math.floor(d % 86400 / 3600)}</b> 小時</span><span>記得回家投票 🗳️</span>`; };
 if (S.demo) $("#count").remove(); else { tick(); setInterval(tick, 30000); }
 
-/* 右下角數字人：待機影片＋介紹氣泡；點一下播自我介紹（開場白語音＋說話影片＋逐字字幕） */
+/* 右下角數字人：去背人物＋直接在氣泡裡聊天（題庫預錄語音 → AI 即時回答 → 轉介），說話／思考時換對應動作 */
 (() => {
-  const A = S.avatar || {}, one = v => Array.isArray(v) ? v[0] : v, CUT = S.cutout || {};
-  const bud = $("#buddy"), bub = $("#bubble"), bt = $("#bText"), au = $("#bAu"), vI = $("#bIdle"), vT = $("#bTalk");
+  const A = S.avatar || {}, CUT = S.cutout || {};
+  const bud = $("#buddy"), bub = $("#bubble"), bt = $("#bText"), blog = $("#bLog"), au = $("#bAu");
+  const vI = $("#bIdle"), vT = $("#bTalk"), vK = $("#bThink"), fig = $("#bWin");
   $("#bName").textContent = `${C.name}｜AI 數字分身`;
-  // 去背：Chrome／Android 播透明 WebM；Safari 播不了透明影片，就用去背照片（會輕輕呼吸、說話時點頭）
   const safari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
-  const fig = $("#bWin"); if (CUT.poster) $("#fabImg").dataset.cut = CUT.poster;
-  if (CUT.idle && !safari) { fig.classList.add("vid"); vI.src = CUT.idle; vI.play().catch(() => {}); if (CUT.talk) vT.src = CUT.talk; else vT.remove(); }
-  else { vI.remove(); vT.remove(); }
-  const intro = [`嗨！我是${C.name}的 AI 分身 👋`, "想知道我做了哪些事？往下滑就看得到。", "有問題直接問我，用說的也可以喔！"];
-  let k = 0, busy = false;
+  const TALK = [CUT.talk, CUT.talk2].filter(Boolean);
+  if (CUT.poster) $("#fabImg").src = CUT.poster;
+  const useVid = CUT.idle && !safari;
+  if (useVid) { fig.classList.add("vid"); vI.src = CUT.idle; vI.play().catch(() => {}); vT.src = TALK[0] || ""; if (CUT.think) vK.src = CUT.think; else vK.remove(); }
+  else { vI.remove(); vT.remove(); vK.remove(); }
+  let ti = 0;
+  const state = s => {                                  // idle / think / talk：影片跟著聲音切換
+    bud.classList.toggle("talking", s === "talk"); bud.classList.toggle("thinking", s === "think");
+    if (!useVid) return;
+    if (s === "talk" && TALK.length) { vT.src = TALK[ti++ % TALK.length]; vT.loop = true; vT.currentTime = 0; vT.play().catch(() => {}); } else vT.pause();
+    if (s === "think" && vK.isConnected) { vK.currentTime = 0; vK.play().catch(() => {}); } else if (vK.isConnected) vK.pause();
+  };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const intro = [`嗨！我是${C.name}的 AI 分身 👋`, "有問題直接在這裡問我，打字或用說的都可以！", "想知道我做了哪些事？往下滑就看得到。"];
+  let k = 0, turn = 0, hist = [], busy = false;
   bt.textContent = intro[0];
-  setInterval(() => { if (!busy && !bub.classList.contains("hide")) bt.textContent = intro[++k % intro.length]; }, 5000);
-  const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-  function speak() {
-    bub.classList.remove("hide"); busy = true; au.src = "audio/opening.mp3";
-    bud.classList.add("talking"); if (vT.isConnected) { vT.currentTime = 0; vT.play().catch(() => {}); }
-    const t = [...S.opening];
-    const tick = () => { const p = au.duration ? au.currentTime / au.duration : 0, n = Math.round(t.length * p);
-      bt.innerHTML = esc(t.slice(0, n).join("")) + `<span class="dim">${esc(t.slice(n).join(""))}</span>`;
+  setInterval(() => { if (!busy && !bub.classList.contains("hide") && !blog.querySelector(".me")) bt.textContent = intro[++k % intro.length]; }, 5000);
+  let touched = false; bub.addEventListener("pointerdown", () => touched = true); bub.addEventListener("focusin", () => touched = true);
+  if (innerWidth < 620) setTimeout(() => { if (!touched && !busy) bub.classList.add("hide"); }, 7000);
+  // 常見問題
+  $("#bChips").innerHTML = `<button type="button" data-intro>▶ 自我介紹</button>` +
+    S.qa.filter(q => q.chip).slice(0, 6).map(q => `<button type="button" data-id="${q.id}">${esc(q.q)}</button>`).join("");
+  // 題庫比對（和對話頁相同規則）
+  const norm = t => t.toLowerCase().replace(/[\s，。？！、,.?!「」『』：:；;~～]/g, "");
+  const match = text => { const t = norm(text); let best = null, top = 0;
+    for (const it of S.qa) { let sc = 0;
+      for (const kw of it.keys || []) if (kw && t.includes(norm(kw))) sc += norm(kw).length * 2 + 1;
+      if (norm(it.q) === t) sc += 100; else { const q = norm(it.q); let c = 0; for (const ch of new Set(t)) if (q.includes(ch)) c++; sc += c / Math.max(4, new Set(t).size) * 4; }
+      if (sc > top) { top = sc; best = it; } }
+    return top >= 7 ? best : null; };
+  // 播一段語音，氣泡逐字跟著跑
+  const play = (url, text, my) => new Promise(res => {
+    au.src = url; const ch = [...text], bt = $("#bText");
+    const tick = () => { if (my !== turn) return; const p = au.duration ? au.currentTime / au.duration : 0, n = Math.round(ch.length * p);
+      bt.innerHTML = esc(ch.slice(0, n).join("")) + `<span class="dim">${esc(ch.slice(n).join(""))}</span>`; blog.scrollTop = blog.scrollHeight;
       if (!au.paused && !au.ended) requestAnimationFrame(tick); };
-    au.play().then(tick).catch(() => { bt.textContent = S.opening; });
-    au.onended = () => { bud.classList.remove("talking"); if (vT.isConnected) vT.pause(); bt.textContent = S.opening; busy = false; };
+    au.onended = () => res(true); au.onerror = () => res(false);
+    au.play().then(() => { state("talk"); tick(); }).catch(() => res(false));
+  });
+  async function ask(text, preset) {
+    text = (text || "").trim(); if (!text && !preset) return;
+    const my = ++turn; au.pause(); busy = true; bub.classList.remove("hide");
+    if (text) { blog.insertAdjacentHTML("beforeend", `<div class="me">${esc(text)}</div>`); }
+    const p = document.createElement("p"); blog.append(p); bt.removeAttribute("id"); p.id = "bText";
+    const out = $("#bText");
+    const say = async (url, ans) => { const ok = await play(url, ans, my); if (my === turn) { out.textContent = ans; state("idle"); busy = false; } return ok; };
+    const it = preset === "intro" ? { a: S.opening, url: "audio/opening.mp3" } : (preset || match(text));
+    if (it) { const ans = it.a; await say(it.url || `audio/qa/${it.id}.mp3`, ans); hist.push([text, ans]); return; }
+    state("think"); out.innerHTML = '<span class="dim">讓我想一下…</span>';
+    let ans = null;
+    try { const r = await fetch("api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: text, history: hist.slice(-4) }) });
+      if (r.ok) ans = (await r.json()).answer; } catch {}
+    if (my !== turn) return;
+    if (ans) { out.innerHTML = `<span class="dim">${esc(ans)}</span>`; blog.scrollTop = blog.scrollHeight; const ok = await say("api/tts?text=" + encodeURIComponent(ans), ans); hist.push([text, ans]); if (!ok) out.textContent = ans; }
+    else await say("audio/fallback.mp3", S.fallback);
   }
-  if (innerWidth < 620) setTimeout(() => { if (!busy) bub.classList.add("hide"); }, 7000);   // 手機上幾秒後自動收起，點小窗再打開
-  $("#bPlay").onclick = speak;
-  $("#bWin").onclick = () => bub.classList.contains("hide") ? bub.classList.remove("hide") : speak();
-  $("#bx").onclick = () => { bub.classList.add("hide"); au.pause(); bud.classList.remove("talking"); busy = false; };
+  // 用說的
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition; let rec = null;
+  if (!SR) $("#bMic").hidden = true;
+  $("#bMic").onclick = () => { if (rec) return rec.stop(); au.pause(); turn++;
+    rec = new SR(); rec.lang = "zh-TW"; rec.interimResults = true; let heard = ""; $("#bMic").classList.add("on");
+    rec.onresult = e => { heard = [...e.results].map(r => r[0].transcript).join(""); $("#bQ").value = heard; };
+    rec.onend = () => { rec = null; $("#bMic").classList.remove("on"); if (heard.trim()) { $("#bQ").value = ""; ask(heard); } };
+    try { rec.start(); } catch { rec = null; $("#bMic").classList.remove("on"); } };
+  $("#bForm").onsubmit = e => { e.preventDefault(); const v = $("#bQ").value; $("#bQ").value = ""; ask(v); };
+  $("#bChips").onclick = e => { const b = e.target.closest("button"); if (!b) return;
+    if (b.hasAttribute("data-intro")) return ask("", "intro"); const it = S.qa.find(q => q.id === b.dataset.id); ask(it.q, it); };
+  fig.onclick = () => { if (bub.classList.contains("hide")) bub.classList.remove("hide"); else if (!busy) ask("", "intro"); };
+  $("#bx").onclick = () => { bub.classList.add("hide"); au.pause(); turn++; state("idle"); busy = false; };
 })();
 
 /* Got 的素材：主視覺背景、城市生活照片 */
