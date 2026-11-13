@@ -442,6 +442,6 @@ window.SITE = {
    "avatar/think.mp4?v=1794551902"
   ],
   "bg": "avatar/bg.png?v=1794551885",
-  "poster": "avatar/poster.jpg?v=1794561172"
+  "poster": "avatar/poster.jpg?v=1794562028"
  }
 };
