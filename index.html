@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>競選網站</title>
-<meta name="theme-color" content="#06247f">
+<meta name="theme-color" content="#fffaf4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Montserrat:wght@700;800&family=LXGW+WenKai+TC:wght@400;700&display=swap">
@@ -128,43 +128,45 @@ footer ol{margin:0;padding-left:1.2em;font-size:.8rem;word-break:break-all}
 .fab img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center 15%}
 .fab span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#33c26b;margin-right:6px;vertical-align:1px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hname svg path{stroke-dashoffset:0}}
-/* ===== 陳靈品牌介面（參考 lumiava-ai.com） ===== */
-:root{--navy:#06247f;--blue:#0d4bea;--sky:#3d8bff;--grad:linear-gradient(120deg,#6d3cf5,#b146e8 55%,#ec4899);
-  --gold:linear-gradient(100deg,#ffd93b,#fff3a8 60%,#fff);--ink:#0f1d4a;--mute:#5b6b95;--line:#dbe6ff;--card:#fff;--paper:#f4f8ff;--paper2:#eaf2ff}
+:root{--ink:#3d3652;--mute:#857d96;--grad:linear-gradient(120deg,#8b7cf6,#f19bc0);--cream:#fffaf4;--line:#efe7de;--warm:#e98d63}
+/* ===== 親切柔和介面 ===== */
+:root{--paper:#fffaf4;--paper2:#fff3ea;--card:#fff;--line:#efe7de}
 body{background:var(--paper);color:var(--ink)}
-.nav{background:rgba(8,44,170,.88);color:#fff}
-.nav.solid{border-color:transparent;box-shadow:0 8px 30px rgba(0,20,90,.25)}
-.nav ul{color:#cfe0ff}.nav ul a:hover{color:#fff}
+.nav{background:rgba(255,250,244,.9);color:var(--ink)}
+.nav.solid{border-color:var(--line);box-shadow:none}
+.nav ul{color:var(--mute)}.nav ul a:hover{color:#b9578a}
 .brand .no{background:var(--grad)}
-.btn-main{background:var(--grad);box-shadow:0 10px 26px -8px rgba(236,72,153,.6)}
-.btn-line{background:transparent;border:1px solid rgba(255,255,255,.7);color:#fff}
-.hero{background:radial-gradient(900px 500px at 85% 80px,rgba(120,200,255,.55),transparent 60%),radial-gradient(700px 500px at 5% 420px,rgba(139,92,246,.35),transparent 60%),linear-gradient(180deg,#06247f,#0d4bea 60%,#3d8bff);color:#fff}
-.hero::before{background:radial-gradient(circle,rgba(140,220,255,.28),rgba(139,92,246,.12) 40%,transparent 70%)}
-.hero .kick{font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:.26em;font-size:.8rem;color:#ffd93b;margin:0 0 14px}
-.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);color:#e3ecff}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 10px 24px -10px rgba(241,155,192,.8)}
+.btn-line{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+.hero{background:radial-gradient(700px 500px at 0 0,#ffe3d1,transparent 60%),radial-gradient(800px 600px at 100% 10%,#e9e3ff,transparent 60%),var(--paper);color:var(--ink)}
+.hero::before{background:radial-gradient(circle,#fff 0,rgba(255,255,255,0) 70%)}
+.hero .kick{font-family:"Noto Sans TC",sans-serif;font-weight:700;letter-spacing:.14em;font-size:.9rem;color:var(--warm);margin:0 0 14px}
+.badge{background:#fff;border:1.5px solid var(--line);color:var(--mute)}
 .badge b{background:var(--grad)}
-.hello{color:#cfe0ff}
-.hname span{background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hname svg path{stroke:#ffd93b}
-.htitle{color:#ffd93b}
-.slogan{color:#fff;font-family:"Noto Sans TC",sans-serif;font-weight:900}
-.hsub,.count{color:#cfe0ff}.count b{color:#fff}
-.photo .frame{border-radius:50%;aspect-ratio:1;border:2px solid rgba(190,230,255,.7);background:rgba(255,255,255,.08);box-shadow:0 0 0 10px rgba(255,255,255,.05),0 0 60px rgba(140,220,255,.45)}
+.hello{color:var(--mute)}
+.hname span{background:linear-gradient(100deg,#7c6cf2,#ef8fb6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hname svg path{stroke:#ffc7a3}
+.slogan{color:var(--ink);font-family:"LXGW WenKai TC","Noto Sans TC",serif;font-weight:700}
+.hsub,.count{color:var(--mute)}.count b{color:var(--ink)}
+.photo .frame{border-radius:50%;aspect-ratio:1;border:8px solid #fff;background:#fff3ea;box-shadow:0 24px 50px -24px rgba(150,100,70,.45)}
 .photo .frame img{object-position:center 12%}
-.sticker{border-radius:18px 18px 18px 4px;color:var(--ink);box-shadow:0 10px 30px rgba(0,30,120,.3)}
+.sticker{border-radius:20px 20px 20px 6px;color:var(--ink);box-shadow:0 12px 26px -12px rgba(150,100,70,.4)}
 .sticker b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.cap{color:#b9cdf7}
-.talkband{background:linear-gradient(120deg,#0a2a9a,#0d4bea);box-shadow:0 30px 60px -30px rgba(0,30,120,.6)}
+.cap{color:var(--mute)}
+.talkband{background:linear-gradient(120deg,#fff0e6,#f1ecff);color:var(--ink);box-shadow:0 24px 50px -30px rgba(150,100,70,.45)}
+.talkband::after{background:rgba(255,255,255,.5)}
+.talkband .av{border-color:#fff}
 .talkband .btn{background:var(--grad);color:#fff}
-.talkband .chips a{background:#fff;color:var(--ink);font-weight:700}
-.kicker{font-family:Montserrat,"Noto Sans TC",sans-serif;font-weight:800;letter-spacing:.12em;color:#6d3cf5;font-size:.95rem}
-.mark{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.acard{border:0;border-radius:22px;box-shadow:0 14px 40px -18px rgba(0,30,120,.35);rotate:0deg!important}
-.acard .tag{color:#3d5bd9;background:#eaf0ff}
-.acard .kind{color:#b146e8;font-family:"Noto Sans TC",sans-serif}
-.acard .foot button{color:#6d3cf5}
-.tli .y{color:var(--blue)}.tli::after{border-color:var(--blue)}
-.fab{background:rgba(8,20,70,.92);border:1px solid rgba(160,200,255,.3);color:#fff;box-shadow:0 14px 30px rgba(0,20,90,.35)}
+.talkband .chips a{background:#fff;color:var(--ink);font-weight:500}
+.kicker{font-family:"Noto Sans TC",sans-serif;font-weight:700;letter-spacing:.1em;color:var(--warm);font-size:.95rem}
+.mark{background:linear-gradient(transparent 62%,#ffd9c4 62%);color:inherit;-webkit-background-clip:border-box;background-clip:border-box}
+.acard{border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 30px -20px rgba(150,100,70,.4);rotate:0deg!important}
+.acard .tag{color:#9a6bd8;background:#f3eeff}
+.acard .kind{color:var(--warm);font-family:"Noto Sans TC",sans-serif}
+.acard .foot button{color:#b9578a}
+.story{background:#fff3ea}
+.tli .y{color:#9a6bd8}.tli::after{border-color:#c9b9ff;background:#fff3ea}
+.fab{background:#fff;border:1.5px solid var(--line);color:var(--ink);box-shadow:0 14px 30px -14px rgba(150,100,70,.45)}
 </style>
 </head>
 <body>
@@ -177,7 +179,7 @@ body{background:var(--paper);color:var(--ink)}
 <main id="top">
 <section class="hero"><div class="wrap">
   <div>
-    <p class="kick">AI DIGITAL HUMAN</p>
+    <p class="kick">AI 數字分身・隨時陪你聊</p>
     <span class="badge"><b id="partyB"></b><span data-f="title"></span></span>
     <p class="hello">大家好，我是</p>
     <h1 class="hname"><span data-f="name"></span><svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 80 4, 180 4, 296 12"/></svg></h1>
