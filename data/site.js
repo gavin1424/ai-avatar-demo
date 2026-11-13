@@ -450,6 +450,14 @@ window.SITE = {
    "avatar/think.mp4?v=1794579945"
   ],
   "bg": "avatar/bg.png?v=1794579938",
-  "poster": "avatar/poster.jpg?v=1794581843"
- }
+  "poster": "avatar/poster.jpg?v=1794584557"
+ },
+ "cutout": {
+  "idle": "avatar/cut_idle.webm?v=1794584482",
+  "talk": "avatar/cut_talk.webm?v=1794584486",
+  "greet": "avatar/cut_greet.webm?v=1794584490",
+  "poster": "avatar/cut_poster.png?v=1794584557"
+ },
+ "heroImg": "",
+ "gallery": []
 };

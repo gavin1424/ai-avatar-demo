@@ -133,14 +133,26 @@ footer ol{margin:0;padding-left:1.2em;font-size:.8rem;word-break:break-all}
 .acard .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .acard:hover .pic img{transform:scale(1.05)}
 .acard .pic figcaption{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.88);border-radius:999px;padding:1px 9px;font-size:.7rem;color:#857d96}
-/* 右下角數字人小窗 */
-.buddy{position:fixed;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:flex-end;gap:10px}
-.bwin{position:relative;width:118px;height:150px;border:4px solid #fff;border-radius:26px;overflow:hidden;padding:0;background:#fff3ea;box-shadow:0 18px 40px -16px rgba(150,90,50,.55);cursor:pointer;flex:none}
-.bwin img,.bwin video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 16%;transform:scale(2.5);transform-origin:50% 16%}
-.bwin #bTalk{opacity:0;transition:opacity .3s}.buddy.talking #bTalk{opacity:1}
-.bwin .live{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.92);border-radius:999px;padding:1px 9px 1px 7px;font-size:.72rem;font-weight:700;color:#3d3652}
-.bwin .live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#33c26b;margin-right:5px;vertical-align:1px;animation:pulse 1.6s infinite}
-.bubble{position:relative;max-width:min(300px,calc(100vw - 160px));background:#fff;border-radius:22px 22px 6px 22px;padding:14px 16px 12px;box-shadow:0 16px 36px -16px rgba(150,90,50,.5);font-size:.93rem;line-height:1.6;transform-origin:100% 100%;transition:opacity .3s,transform .3s}
+/* 城市生活照片區 */
+.gal{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px;margin-top:26px;scrollbar-width:thin}
+.gal figure{flex:0 0 min(78vw,360px);margin:0;scroll-snap-align:start;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px -20px rgba(150,100,70,.45)}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.gal figcaption{padding:12px 16px 14px;font-size:.93rem;color:var(--ink)}
+.gal figcaption small{display:block;color:var(--mute);font-size:.72rem;margin-top:2px}
+.hero.has-img{background:linear-gradient(180deg,rgba(255,250,244,.88),rgba(255,250,244,.94)),var(--hero) center/cover no-repeat}
+/* 右下角數字人：去背人物直接站在頁面右下角，旁邊對話氣泡 */
+.buddy{position:fixed;right:max(6px,env(safe-area-inset-right,0px));bottom:calc(6px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:4px;pointer-events:none}
+.buddy>*{pointer-events:auto}
+.bfig{position:relative;width:170px;height:300px;border:0;padding:0;background:none;cursor:pointer;flex:none;filter:drop-shadow(0 14px 18px rgba(120,80,50,.28))}
+.bfig img,.bfig video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.bfig img{animation:breathe 4.5s ease-in-out infinite;transform-origin:50% 100%}
+.bfig.vid img{display:none}
+.bfig #bTalk{opacity:0;transition:opacity .3s}.buddy.talking #bTalk{opacity:1}.buddy.talking #bIdle{opacity:0}
+.buddy.talking .bfig img{animation:breathe 4.5s ease-in-out infinite,nod 1.6s ease-in-out infinite}
+@keyframes breathe{50%{scale:1.012}}@keyframes nod{25%{rotate:.6deg}75%{rotate:-.6deg}}
+.bfig .live{position:absolute;left:50%;translate:-50% 0;bottom:2px;background:rgba(255,255,255,.95);border-radius:999px;padding:1px 10px 1px 8px;font-size:.72rem;font-weight:700;color:#3d3652;box-shadow:0 4px 10px rgba(120,80,50,.2);white-space:nowrap}
+.bfig .live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#33c26b;margin-right:5px;vertical-align:1px;animation:pulse 1.6s infinite}
+.bubble{position:relative;align-self:flex-start;margin-top:30px;max-width:min(290px,calc(100vw - 190px));background:#fff;border-radius:22px 22px 6px 22px;padding:14px 16px 12px;box-shadow:0 16px 36px -16px rgba(150,90,50,.5);font-size:.93rem;line-height:1.6;transform-origin:100% 50%;transition:opacity .3s,transform .3s}
 .bubble.hide{opacity:0;transform:scale(.85);pointer-events:none}
 .bubble b{display:block;color:#e98d63;font-size:.8rem;margin-bottom:2px}
 .bubble p{margin:0;min-height:1.6em}
@@ -149,7 +161,7 @@ footer ol{margin:0;padding-left:1.2em;font-size:.8rem;word-break:break-all}
 .bact button,.bact a{border:0;border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:700;background:#fff1e7;color:#3d3652}
 .bact a{background:var(--grad);color:#fff}
 .bx{position:absolute;right:8px;top:4px;border:0;background:none;color:#b3a9a0;font-size:1.1rem;padding:2px 6px}
-@media(max-width:620px){.bwin{width:88px;height:112px;border-radius:20px}.bubble{font-size:.85rem;padding:10px 12px 9px;max-width:calc(100vw - 130px)}.bact{margin-top:6px;gap:6px}.bact button,.bact a{padding:5px 10px;font-size:.78rem}}
+@media(max-width:620px){.bfig{width:110px;height:196px}.bubble{margin-top:10px;font-size:.85rem;padding:10px 12px 9px;max-width:calc(100vw - 130px)}.bact{margin-top:6px;gap:6px}.bact button,.bact a{padding:5px 10px;font-size:.78rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hname svg path{stroke-dashoffset:0}}
 :root{--ink:#3d3652;--mute:#857d96;--grad:linear-gradient(120deg,#ff8a65,#ffb35c);--cream:#fffaf4;--line:#efe7de;--warm:#e98d63}
 /* ===== 親切柔和介面 ===== */
@@ -230,6 +242,11 @@ body{background:var(--paper);color:var(--ink)}
   <div class="agrid" id="agrid"></div>
 </div></section>
 
+<section class="sec city" id="city" hidden><div class="wrap">
+  <div class="rv"><div class="kicker">城市生活</div><h2>想像一下，<span class="mark">我們的日常</span>。</h2><p class="lead" id="cityLead">走出家門就有公園、托育、市場和便利的交通，這就是我想一起打造的城市。</p></div>
+  <div class="gal" id="gal"></div>
+</div></section>
+
 <section class="sec story" id="story"><div class="wrap">
   <div class="rv"><div class="kicker">一路走來</div><h2>我的故事</h2></div>
   <div class="tl" id="tl"></div>
@@ -247,8 +264,8 @@ body{background:var(--paper);color:var(--ink)}
 <aside class="buddy" id="buddy" aria-label="AI 數字分身">
   <div class="bubble" id="bubble"><button class="bx" id="bx" aria-label="收起">×</button><b id="bName"></b><p id="bText"></p>
     <div class="bact"><button type="button" id="bPlay">▶ 聽我自我介紹</button><a href="talk.html">跟我聊聊 →</a></div></div>
-  <button type="button" class="bwin" id="bWin" aria-label="跟 AI 分身打招呼">
-    <img id="fabImg" alt=""><video id="bIdle" muted loop playsinline preload="metadata"></video><video id="bTalk" muted loop playsinline preload="none"></video>
+  <button type="button" class="bfig" id="bWin" aria-label="跟 AI 分身打招呼">
+    <img id="fabImg" alt=""><video id="bIdle" muted loop playsinline preload="auto"></video><video id="bTalk" muted loop playsinline preload="none"></video>
     <span class="live">在線</span></button>
 </aside>
 <audio id="bAu" preload="none"></audio>
@@ -264,6 +281,7 @@ document.title = `${C.name}｜${C.title}`;
 $("#navNo").textContent = C.number ?? C.name.slice(0, 1);
 $("#partyB").textContent = C.number ? `${C.number} 號` : (C.party || "");
 for (const id of ["#photo", "#bandImg", "#fabImg"]) { $(id).src = C.photo; $(id).alt = C.name; }
+if (S.cutout && S.cutout.poster) $("#fabImg").src = S.cutout.poster;
 $("#photoCap").textContent = C.photoCredit ? "照片：" + C.photoCredit : "";
 const st = S.stat || {}; $("#stat1").textContent = st.value || ""; $("#stat1l").textContent = st.label || "";
 if (!st.value) $(".s1").remove();
@@ -287,11 +305,14 @@ if (S.demo) $("#count").remove(); else { tick(); setInterval(tick, 30000); }
 
 /* 右下角數字人：待機影片＋介紹氣泡；點一下播自我介紹（開場白語音＋說話影片＋逐字字幕） */
 (() => {
-  const A = S.avatar || {}, one = v => Array.isArray(v) ? v[0] : v;
+  const A = S.avatar || {}, one = v => Array.isArray(v) ? v[0] : v, CUT = S.cutout || {};
   const bud = $("#buddy"), bub = $("#bubble"), bt = $("#bText"), au = $("#bAu"), vI = $("#bIdle"), vT = $("#bTalk");
   $("#bName").textContent = `${C.name}｜AI 數字分身`;
-  if (one(A.idle)) { vI.src = one(A.idle); vI.play().catch(() => {}); } else vI.remove();
-  if (one(A.talk)) vT.src = one(A.talk); else vT.remove();
+  // 去背：Chrome／Android 播透明 WebM；Safari 播不了透明影片，就用去背照片（會輕輕呼吸、說話時點頭）
+  const safari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+  const fig = $("#bWin"); if (CUT.poster) $("#fabImg").dataset.cut = CUT.poster;
+  if (CUT.idle && !safari) { fig.classList.add("vid"); vI.src = CUT.idle; vI.play().catch(() => {}); if (CUT.talk) vT.src = CUT.talk; else vT.remove(); }
+  else { vI.remove(); vT.remove(); }
   const intro = [`嗨！我是${C.name}的 AI 分身 👋`, "想知道我做了哪些事？往下滑就看得到。", "有問題直接問我，用說的也可以喔！"];
   let k = 0, busy = false;
   bt.textContent = intro[0];
@@ -299,19 +320,26 @@ if (S.demo) $("#count").remove(); else { tick(); setInterval(tick, 30000); }
   const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
   function speak() {
     bub.classList.remove("hide"); busy = true; au.src = "audio/opening.mp3";
-    bud.classList.add("talking"); vT.currentTime = 0; vT.play?.().catch(() => {});
+    bud.classList.add("talking"); if (vT.isConnected) { vT.currentTime = 0; vT.play().catch(() => {}); }
     const t = [...S.opening];
     const tick = () => { const p = au.duration ? au.currentTime / au.duration : 0, n = Math.round(t.length * p);
       bt.innerHTML = esc(t.slice(0, n).join("")) + `<span class="dim">${esc(t.slice(n).join(""))}</span>`;
       if (!au.paused && !au.ended) requestAnimationFrame(tick); };
     au.play().then(tick).catch(() => { bt.textContent = S.opening; });
-    au.onended = () => { bud.classList.remove("talking"); vT.pause?.(); bt.textContent = S.opening; busy = false; };
+    au.onended = () => { bud.classList.remove("talking"); if (vT.isConnected) vT.pause(); bt.textContent = S.opening; busy = false; };
   }
   if (innerWidth < 620) setTimeout(() => { if (!busy) bub.classList.add("hide"); }, 7000);   // 手機上幾秒後自動收起，點小窗再打開
   $("#bPlay").onclick = speak;
   $("#bWin").onclick = () => bub.classList.contains("hide") ? bub.classList.remove("hide") : speak();
   $("#bx").onclick = () => { bub.classList.add("hide"); au.pause(); bud.classList.remove("talking"); busy = false; };
 })();
+
+/* Got 的素材：主視覺背景、城市生活照片 */
+if (S.heroImg) { const h = $(".hero"); h.classList.add("has-img"); h.style.setProperty("--hero", `url(${S.heroImg})`); }
+if ((S.gallery || []).length) {
+  $("#city").hidden = false;
+  $("#gal").innerHTML = S.gallery.map(g => `<figure class="rv"><img src="${g.img}" alt="${g.cap || "城市生活"}" loading="lazy"><figcaption>${g.cap || ""}<small>${S.demo ? "示意圖" : ""}</small></figcaption></figure>`).join("");
+}
 
 /* chips */
 $("#bandChips").innerHTML = S.qa.filter(q => q.chip).slice(0, 4).map(q => `<a href="talk.html?q=${encodeURIComponent(q.id)}">${q.q}</a>`).join("");
